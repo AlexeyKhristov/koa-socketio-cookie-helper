@@ -6,21 +6,21 @@ var Keygrip = require('keygrip');
  *  Get cookie from a WebSocket's upgraded request.
  *  If the cookie is signed, keys must be provided.
  *
- *  @param {WebSocket}  ws
+ *  @param {Socket.io}  socket
  *  @param {String}     name
  *  @param {Array}      [keys]
  *  @api public
  */
-module.exports.get = function (ws, name, keys) {
+module.exports.get = function (socket, name, keys) {
   var sigName = name + '.sig';
-  var cookies = ws.handshake.headers.cookie;
+  var cookies = socket.handshake.headers.cookie;
   if(!cookies) return;
   var match = cookies.match(getPattern(name));
   if(!match) return;
   var value = match[1];
   if(!keys) return value;
 
-  var signedCookie = module.exports.get(ws, sigName);
+  var signedCookie = module.exports.get(socket, sigName);
   if(!signedCookie) return;
 
   var keygrip;
