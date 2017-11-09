@@ -17,12 +17,16 @@
     "Makefile",
     "Readme.md"
   ],
+  "peerDependencies": {
+    "koa": "1.x",
+    "socket.io": "1.x"
+  },
   "dependencies": {
-    "koa": "0.21.x",
-    "socket.io": "1.x.x",
     "keygrip": "1.0.x"
   },
   "devDependencies": {
+    "koa": "1.x",
+    "socket.io": "1.x",
     "chai": "*",
     "mocha": "*",
     "coveralls": "*",
